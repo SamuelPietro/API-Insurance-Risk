@@ -6,16 +6,24 @@
 
 We determine a user's insurance needs by asking personal and risk-related questions and collecting user information. From this data, we determine a risk score for each line of insurance and then suggest an insurance plan ("economic", "regular", "responsible") corresponding to your risk score.
 
-##running
+## Running
 
 To run the api on your PHP server, just save the files in the root folder (usually "public_html).
-To call API you must enter your server URL plus ***/?action=data&json={your json payload}***
+To call API you must enter your server URL plus 
+***`/?action=data&json={your json payload}`***
 
-for example: ***`http://localhost/api/?action=data&json={"age":35,"dependents":2,"house":{"ownership_status":"owned"},"income":0,"marital_status":"married","risk_questions":[0,1,0],"vehicle":{"year":2018}}`***
-`
+for example: 
+***`http://localhost/api/?action=data&json={"age":35,"dependents":2,"house":{"ownership_status":"owned"},"income":0,"marital_status":"married","risk_questions":[0,1,0],"vehicle":{"year":2018}}`***
 
 
-##The input
+Another possible use is to use POST sending, for this we just send our json payload using the POST method to
+***`http://localhost/api/?action=data`***
+
+### Tests and environment
+There is a post.php file inside the root directory that generates a form for inserting the json payload. This form can be accessed by calling it directly in the browser.
+***`http://localhost/api/post.php`***
+
+## The input
 The application receives the JSON payload through the API endpoint and transforms it into a risk profile by calculating a risk score for each line of insurance (life, disability, home & auto) based on the information provided by the user, like this example:
 
 ```json
@@ -29,7 +37,7 @@ The application receives the JSON payload through the API endpoint and transform
   "vehicle": {"year": 2018}
 }
 ```
-##The risk algorithm
+## The risk algorithm
 First, it calculates the base score by summing the answers from the risk questions, resulting in a number ranging from 0 to 3. Then, it applies the following rules to determine a risk score for each line of insurance.
 
 If the user doesn’t have income, vehicles or houses, she is ineligible for disability, auto, and home insurance, respectively.
@@ -47,7 +55,7 @@ This algorithm results in a final score for each line of insurance, which should
 - **1 and 2** maps to **“regular”**.
 - **3 and above** maps to **“responsible”**.
 
-##The output
+## The output
 Considering the data provided above, the application should return the following JSON payload:
 
 ```json
