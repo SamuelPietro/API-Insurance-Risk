@@ -13,15 +13,15 @@ To call API you must enter your server URL plus
 ***`/?action=data&json={your json payload}`***
 
 for example: 
-***`http://localhost/api/?action=data&json={"age":35,"dependents":2,"house":{"ownership_status":"owned"},"income":0,"marital_status":"married","risk_questions":[0,1,0],"vehicle":{"year":2018}}`***
+***`https://sshost.com.br/apis/API-Insurance-Risk/?action=data&json={"age":35,"dependents":2,"house":{"ownership_status":"owned"},"income":0,"marital_status":"married","risk_questions":[0,1,0],"vehicle":{"year":2018}}`***
 
 
 Another possible use is to use POST sending, for this we just send our json payload using the POST method to
-***`http://localhost/api/?action=data`***
+***`https://sshost.com.br/apis/API-Insurance-Risk/?action=data`***
 
 ### Tests and environment
 There is a post.php file inside the root directory that generates a form for inserting the json payload. This form can be accessed by calling it directly in the browser.
-***`http://localhost/api/post.php`***
+***`https://sshost.com.br/apis/API-Insurance-Risk/post.php`***
 
 ## The input
 The application receives the JSON payload through the API endpoint and transforms it into a risk profile by calculating a risk score for each line of insurance (life, disability, home & auto) based on the information provided by the user, like this example:
